@@ -362,15 +362,15 @@
         <div class="footer">Made with ❤️ by Neng - 2025</div>
     </div>
 
-    <script>
-        // Calculate days since July 22, 2015
-        function calculateLoveDays() {
-            const startDate = new Date(2025, 6, 22); // July is month 6 (0-indexed)
-            const currentDate = new Date(2025, 0, 1); // Using 2025 as requested
-            const timeDifference = currentDate - startDate;
-            const daysTogether = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-            return daysTogether;
-        }
+ <script>
+  // Calculate days since July 22, 2015
+  function calculateLoveDays() {
+      const startDate = new Date(2015, 6, 22); // July = 6 (0-indexed in JS)
+      const currentDate = new Date(); // today's date
+      const timeDifference = currentDate - startDate;
+      const daysTogether = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+      return daysTogether;
+  }
         
         // Update day counter
         function updateDayCounter() {
