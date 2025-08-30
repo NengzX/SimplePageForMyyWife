@@ -363,7 +363,7 @@
     </div>
 
     <script>
-        // Calculate days since July 22, 2025
+        // Calculate days since July 22, 2015
         function calculateLoveDays() {
             const startDate = new Date(2025, 6, 22); // July is month 6 (0-indexed)
             const currentDate = new Date(2025, 0, 1); // Using 2025 as requested
@@ -525,14 +525,11 @@
                 });
                 
                 // Play a sound (if available)
-              try {
-  const audio = new Audio('iwby.mp3');
-  audio.volume = 0.3;
-  audio.play();
-} catch (e) {
-  console.error('Error playing audio:', e);
-}
-
+                try {
+                    const audio = new Audio('https://h.top4top.io/m_3529qyy2l1.mp3');
+                    audio.volume = 0.3;
+                    audio.play();
+                } catch (e) {
                     // Silence errors if audio can't play
                 }
             });
