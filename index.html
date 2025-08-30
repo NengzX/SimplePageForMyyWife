@@ -150,23 +150,6 @@
             box-shadow: 0 0 30px rgba(255, 105, 180, 0.8);
         }
         
-        .surprise-btn::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: rgba(255, 255, 255, 0.1);
-            transform: rotate(30deg);
-            transition: all 0.5s;
-            opacity: 0;
-        }
-        
-        .surprise-btn:hover::after {
-            opacity: 1;
-        }
-        
         .footer {
             text-align: center;
             margin-top: 40px;
@@ -207,128 +190,33 @@
         }
         
         @keyframes fall {
-            0% {
-                transform: translateY(-10vh) rotate(0deg);
-                opacity: 0.7;
-            }
-            100% {
-                transform: translateY(110vh) rotate(360deg);
-                opacity: 0;
-            }
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 0.7; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
         }
         
         @keyframes sway {
-            0%, 100% {
-                margin-left: 0;
-            }
-            50% {
-                margin-left: 100px;
-            }
+            0%, 100% { margin-left: 0; }
+            50% { margin-left: 100px; }
         }
         
         @keyframes glow {
-            0% {
-                text-shadow: 0 0 5px rgba(255, 105, 180, 0.5);
-            }
-            100% {
-                text-shadow: 0 0 20px rgba(255, 105, 180, 0.9), 0 0 30px rgba(255, 105, 180, 0.7);
-            }
+            0% { text-shadow: 0 0 5px rgba(255, 105, 180, 0.5); }
+            100% { text-shadow: 0 0 20px rgba(255, 105, 180, 0.9), 0 0 30px rgba(255, 105, 180, 0.7); }
         }
         
         @keyframes pulse {
-            0%, 100% {
-                opacity: 0.5;
-            }
-            50% {
-                opacity: 1;
-            }
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
         }
         
         @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
         
         @keyframes shine {
-            0% {
-                left: -100%;
-            }
-            100% {
-                left: 100%;
-            }
-        }
-        
-        .sparkle {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: #fff;
-            border-radius: 50%;
-            box-shadow: 0 0 10px #ff69b4, 0 0 20px #ff69b4;
-            animation: sparkle 3s infinite;
-            opacity: 0;
-        }
-        
-        @keyframes sparkle {
-            0%, 100% {
-                opacity: 0;
-                transform: scale(0);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-        
-        .pulse-circle {
-            position: absolute;
-            border: 2px solid rgba(255, 105, 180, 0.5);
-            border-radius: 50%;
-            opacity: 0;
-            animation: pulse-circle 3s infinite;
-        }
-        
-        @keyframes pulse-circle {
-            0% {
-                width: 20px;
-                height: 20px;
-                opacity: 0.7;
-            }
-            100% {
-                width: 200px;
-                height: 200px;
-                opacity: 0;
-            }
-        }
-        
-        /* Responsive design */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-            
-            .names {
-                font-size: 2rem;
-            }
-            
-            .message {
-                font-size: 1.1rem;
-            }
-            
-            .day-counter {
-                font-size: 1.5rem;
-            }
-            
-            .surprise-btn {
-                padding: 12px 30px;
-                font-size: 1.2rem;
-            }
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
     </style>
 </head>
@@ -362,188 +250,78 @@
         <div class="footer">Made with ❤️ by Neng - 2025</div>
     </div>
 
- <script>
-  // Calculate days since July 22, 2015
+<script>
+  // ✅ Correct day counter
   function calculateLoveDays() {
-      const startDate = new Date(2015, 6, 22); // July = 6 (0-indexed in JS)
+      const startDate = new Date(2025, 6, 22); // July 22, 2015
       const currentDate = new Date(); // today's date
-      const timeDifference = currentDate - startDate;
-      const daysTogether = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-      return daysTogether;
+      const timeDifference = currentDate.getTime() - startDate.getTime();
+      return Math.floor(timeDifference / (1000 * 60 * 60 * 24));
   }
         
-        // Update day counter
-        function updateDayCounter() {
-            const days = calculateLoveDays();
-            const dayCounter = document.getElementById('day-counter');
-            dayCounter.innerHTML = `We've been together for <span style="color:#ff69b4;font-weight:bold;">${days}</span> amazing days!<br>Since July 22, 2015`;
-        }
+  function updateDayCounter() {
+      const days = calculateLoveDays();
+      const dayCounter = document.getElementById('day-counter');
+      dayCounter.innerHTML = `We've been together for <span style="color:#ff69b4;font-weight:bold;">${days}</span> amazing days!<br>Since July 22, 2015`;
+  }
         
-        // Create floating hearts
-        function createHearts() {
-            const heartsContainer = document.getElementById('hearts-container');
-            const heartSymbols = ['❤️', '💖', '💕', '💞', '💓', '💗', '💘', '💝'];
-            
-            for (let i = 0; i < 40; i++) {
-                const heart = document.createElement('div');
-                heart.classList.add('heart');
-                heart.innerHTML = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.animationDelay = Math.random() * 5 + 's';
-                heart.style.fontSize = (Math.random() * 15 + 10) + 'px';
-                
-                heartsContainer.appendChild(heart);
-            }
-        }
+  // Floating hearts
+  function createHearts() {
+      const heartsContainer = document.getElementById('hearts-container');
+      const heartSymbols = ['❤️','💖','💕','💞','💓','💗','💘','💝'];
+      for (let i = 0; i < 40; i++) {
+          const heart = document.createElement('div');
+          heart.classList.add('heart');
+          heart.innerHTML = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+          heart.style.left = Math.random() * 100 + 'vw';
+          heart.style.animationDelay = Math.random() * 5 + 's';
+          heart.style.fontSize = (Math.random() * 15 + 10) + 'px';
+          heartsContainer.appendChild(heart);
+      }
+  }
         
-        // Create rose petals
-        function createPetals() {
-            const heartsContainer = document.getElementById('hearts-container');
-            
-            for (let i = 0; i < 30; i++) {
-                const petal = document.createElement('div');
-                petal.classList.add('petal');
-                petal.style.left = Math.random() * 100 + 'vw';
-                petal.style.animationDelay = Math.random() * 5 + 's';
-                petal.style.width = (Math.random() * 10 + 8) + 'px';
-                petal.style.height = petal.style.width;
-                
-                heartsContainer.appendChild(petal);
-            }
-        }
+  // Surprise button
+  function setupSurpriseButton() {
+      const button = document.getElementById('surprise-btn');
+      button.addEventListener('click', function() {
+          // Simple rose modal
+          const roseModal = document.createElement('div');
+          roseModal.style.position = 'fixed';
+          roseModal.style.top = '0';
+          roseModal.style.left = '0';
+          roseModal.style.width = '100%';
+          roseModal.style.height = '100%';
+          roseModal.style.backgroundColor = 'rgba(0,0,0,0.9)';
+          roseModal.style.display = 'flex';
+          roseModal.style.justifyContent = 'center';
+          roseModal.style.alignItems = 'center';
+          roseModal.style.zIndex = '1000';
+          roseModal.innerHTML = `
+              <div style="text-align:center;color:white;">
+                  <div style="font-size:8rem;color:#ff69b4;margin-bottom:20px;">🌹</div>
+                  <h2 style="margin-bottom:20px;color:#ff69b4;font-size:2.5rem;">For My Beautiful Jing</h2>
+                  <p style="margin-bottom:30px;font-size:1.5rem;max-width:500px;line-height:1.6;">
+                      This rose symbolizes my eternal love for you. Just like this rose, my love for you will never fade.
+                  </p>
+                  <button id="close-rose" style="padding:12px 35px;background:linear-gradient(45deg,#ff6b6b,#ff69b4);color:white;border:none;border-radius:50px;cursor:pointer;font-size:1.2rem;">Close</button>
+              </div>`;
+          document.body.appendChild(roseModal);
+          document.getElementById('close-rose').onclick = () => roseModal.remove();
+
+          try {
+              const audio = new Audio('https://h.top4top.io/m_3529qyy2l1.mp3'); // Song
+              audio.volume = 0.3;
+              audio.play();
+          } catch (e) {}
+      });
+  }
         
-        // Create sparkles
-        function createSparkles() {
-            for (let i = 0; i < 30; i++) {
-                const sparkle = document.createElement('div');
-                sparkle.classList.add('sparkle');
-                sparkle.style.left = Math.random() * 100 + 'vw';
-                sparkle.style.top = Math.random() * 100 + 'vh';
-                sparkle.style.animationDelay = Math.random() * 3 + 's';
-                
-                document.body.appendChild(sparkle);
-            }
-        }
-        
-        // Create pulse circles
-        function createPulseCircles() {
-            const container = document.querySelector('.container');
-            
-            for (let i = 0; i < 5; i++) {
-                const circle = document.createElement('div');
-                circle.classList.add('pulse-circle');
-                circle.style.left = Math.random() * 100 + '%';
-                circle.style.top = Math.random() * 100 + '%';
-                circle.style.animationDelay = Math.random() * 3 + 's';
-                
-                container.appendChild(circle);
-            }
-        }
-        
-        // Surprise button functionality
-        function setupSurpriseButton() {
-            const button = document.getElementById('surprise-btn');
-            button.addEventListener('click', function() {
-                // Create explosion of hearts
-                for (let i = 0; i < 30; i++) {
-                    const heart = document.createElement('div');
-                    heart.classList.add('heart');
-                    heart.innerHTML = '❤️';
-                    heart.style.left = '50%';
-                    heart.style.top = '50%';
-                    heart.style.position = 'fixed';
-                    heart.style.animation = 'fall 4s ease-in-out forwards';
-                    heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
-                    
-                    document.body.appendChild(heart);
-                    
-                    // Remove hearts after animation completes
-                    setTimeout(() => {
-                        heart.remove();
-                    }, 4000);
-                }
-                
-                // Create explosion of petals
-                for (let i = 0; i < 20; i++) {
-                    const petal = document.createElement('div');
-                    petal.classList.add('petal');
-                    petal.style.left = '50%';
-                    petal.style.top = '50%';
-                    petal.style.position = 'fixed';
-                    petal.style.animation = 'fall 6s ease-in-out forwards, sway 4s ease-in-out infinite';
-                    petal.style.width = (Math.random() * 10 + 8) + 'px';
-                    petal.style.height = petal.style.width;
-                    
-                    document.body.appendChild(petal);
-                    
-                    // Remove petals after animation completes
-                    setTimeout(() => {
-                        document.body.removeChild(petal);
-                    }, 6000);
-                }
-                
-                // Create a modal for the rose
-                const roseModal = document.createElement('div');
-                roseModal.style.position = 'fixed';
-                roseModal.style.top = '0';
-                roseModal.style.left = '0';
-                roseModal.style.width = '100%';
-                roseModal.style.height = '100%';
-                roseModal.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
-                roseModal.style.display = 'flex';
-                roseModal.style.justifyContent = 'center';
-                roseModal.style.alignItems = 'center';
-                roseModal.style.zIndex = '1000';
-                roseModal.style.opacity = '0';
-                roseModal.style.transition = 'opacity 1s';
-                
-                // Rose content
-                roseModal.innerHTML = `
-                    <div style="text-align: center; color: white;">
-                        <div style="font-size: 8rem; color: #ff69b4; margin-bottom: 20px; text-shadow: 0 0 30px rgba(255, 105, 180, 0.8); animation: pulse 2s infinite;">🌹</div>
-                        <h2 style="margin-bottom: 20px; color: #ff69b4; font-size: 2.5rem;">For My Beautiful Jing</h2>
-                        <p style="margin-bottom: 30px; font-size: 1.5rem; max-width: 500px; line-height: 1.6;">
-                            This rose symbolizes my eternal love for you. Just like this rose, my love for you will never fade.
-                        </p>
-                        <button id="close-rose" style="padding: 12px 35px; background: linear-gradient(45deg, #ff6b6b, #ff69b4); color: white; border: none; border-radius: 50px; cursor: pointer; font-size: 1.2rem; box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);">Close</button>
-                    </div>
-                `;
-                
-                document.body.appendChild(roseModal);
-                
-                // Show the modal
-                setTimeout(() => {
-                    roseModal.style.opacity = '1';
-                }, 10);
-                
-                // Close button functionality
-                document.getElementById('close-rose').addEventListener('click', function() {
-                    roseModal.style.opacity = '0';
-                    setTimeout(() => {
-                        document.body.removeChild(roseModal);
-                    }, 1000);
-                });
-                
-                // Play a sound (if available)
-                try {
-                    const audio = new Audio('https://h.top4top.io/m_3529qyy2l1.mp3');
-                    audio.volume = 0.3;
-                    audio.play();
-                } catch (e) {
-                    // Silence errors if audio can't play
-                }
-            });
-        }
-        
-        // Initialize everything when page loads
-        window.onload = function() {
-            updateDayCounter();
-            createHearts();
-            createPetals();
-            createSparkles();
-            createPulseCircles();
-            setupSurpriseButton();
-        };
-    </script>
+  // Init
+  window.onload = function() {
+      updateDayCounter();
+      createHearts();
+      setupSurpriseButton();
+  };
+</script>
 </body>
 </html>
